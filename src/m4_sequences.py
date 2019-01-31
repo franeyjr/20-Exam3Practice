@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jack Franey.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -135,14 +135,21 @@ def practice_problem4a(sequence):
       :type sequence: list | tuple | string
     """
     ###########################################################################
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
-
+    answer = []
+    answer1 = []
+    for k in range(len(sequence)-1,0,-1):
+        if sequence[k] == sequence[k-1]:
+            answer = answer + [k-1]
+    for k in range(len(answer)-1,-1,-1):
+        answer1 = answer1 + [answer[k]]
+    return answer1
 
 def run_test_practice_problem4b():
     """ Tests the    practice_problem4b    function. """
@@ -157,8 +164,8 @@ def run_test_practice_problem4b():
     # and compare the returned value against 19 (the correct answer).
     # -------------------------------------------------------------------------
     tests = [st.SimpleTestCase(practice_problem4b,
-                               [(12, 33, 18, 9, 13, 3, 9, 20, 19, 20)],
-                               19),
+                               [(12, 33, 18, 9, 13, 3, 9, 20, 11, 20)],
+                               18),
              st.SimpleTestCase(practice_problem4b,
                                [(3, 12, 10, 8, 8, 9, 8, 11)],
                                10),
@@ -198,14 +205,18 @@ def practice_problem4b(sequence):
       :type sequence: (list | tuple) of (float | int)
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   10 minutes.
     ###########################################################################
-
+    largest = sequence[0]
+    for k in range(0,len(sequence),2):
+        if sequence[k] > largest:
+            largest = sequence[k]
+    return largest
 
 def run_test_practice_problem4c():
     """ Tests the    practice_problem4c    function. """
@@ -307,7 +318,17 @@ def practice_problem4c(points):
     #    DIFFICULTY:      9
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
-
+    # points1 = []
+    # for j in range(len(points)):
+    #     points1 = points1 + [points[j].clone]
+    for k in range(len(points)):
+        if is_prime(points[k].x) == True and is_prime(points[k].y) == True:
+            change_x_to_this = points[k].x
+            change_y_to_this = points[k].y
+            points[k].x = change_x_to_this
+            points[k].y = change_y_to_this
+            return points[k]
+    return 'Not Found'
 
 def run_test_practice_problem4d():
     """ Tests the    practice_problem4d    function. """
